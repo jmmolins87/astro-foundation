@@ -1,5 +1,9 @@
 ---
+// Server Only
+import Navbar from "../components/navbar.astro";
 
+const name = "Juanma MC";
+const pageTitle = "Home Page";
 ---
 
 <html lang="en">
@@ -8,9 +12,35 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+
+		<Navbar />
+
+		<h1>{name}</h1>
+		<p>
+			Momento actual: <strong> {new Date().toLocaleTimeString()}</strong>
+		</p>
+		<p>
+			Momento actual real:
+			<strong id="time-now-real">
+				{new Date().toLocaleTimeString()}
+			</strong>
+		</p>
 	</body>
+
+	<footer>2024</footer>
+
+	<script>
+		// Client Only
+		const currentYear: number = new Date().getFullYear();
+		const footer = document.querySelector("footer") as HTMLElement;
+		footer.innerHTML = `&copy; ${currentYear}. Todos los derechos reservados.`;
+
+		const timeNowReal = document.getElementById("time-now-real") as HTMLParagraphElement;
+		setInterval(() => {
+			timeNowReal.innerHTML = new Date().toLocaleTimeString();
+		}, 1000);
+	</script>
 </html>
