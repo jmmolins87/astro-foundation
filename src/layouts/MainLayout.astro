@@ -1,0 +1,35 @@
+---
+// Server Only
+import Navbar from "../components/Navbar.astro";
+
+import './../styles/globals.css';
+
+interface Props {
+    pageTitle: string;
+}
+const { pageTitle } = Astro.props
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link re,l="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{ pageTitle }</title>
+    </head>
+    <body>
+        <Navbar />
+        <slot />
+    </body>
+
+    <script>
+        // Client Only
+        const timeNowReal = document.getElementById(
+            "time-now-real",
+        ) as HTMLParagraphElement;
+        setInterval(() => {
+            timeNowReal.innerHTML = new Date().toLocaleTimeString();
+        }, 1000);
+    </script>
+</html>

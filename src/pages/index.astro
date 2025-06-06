@@ -1,46 +1,16 @@
 ---
-// Server Only
-import Navbar from "../components/navbar.astro";
-
-const name = "Juanma MC";
-const pageTitle = "Home Page";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-
-		<Navbar />
-
-		<h1>{name}</h1>
-		<p>
-			Momento actual: <strong> {new Date().toLocaleTimeString()}</strong>
-		</p>
-		<p>
-			Momento actual real:
-			<strong id="time-now-real">
-				{new Date().toLocaleTimeString()}
-			</strong>
-		</p>
-	</body>
-
-	<footer>2024</footer>
-
-	<script>
-		// Client Only
-		const currentYear: number = new Date().getFullYear();
-		const footer = document.querySelector("footer") as HTMLElement;
-		footer.innerHTML = `&copy; ${currentYear}. Todos los derechos reservados.`;
-
-		const timeNowReal = document.getElementById("time-now-real") as HTMLParagraphElement;
-		setInterval(() => {
-			timeNowReal.innerHTML = new Date().toLocaleTimeString();
-		}, 1000);
-	</script>
-</html>
+<MainLayout pageTitle="Home Page">
+	<h1>Juanma MC</h1>
+	<p>
+		Momento actual: <strong> {new Date().toLocaleTimeString()}</strong>
+	</p>
+	<p>
+		Momento actual real:
+		<strong id="time-now-real">
+			{new Date().toLocaleTimeString()}
+		</strong>
+	</p>
+</MainLayout>
