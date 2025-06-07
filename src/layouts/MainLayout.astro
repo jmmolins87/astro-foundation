@@ -1,29 +1,31 @@
 ---
 // Server Only
+import { ClientRouter } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 
-import './../styles/globals.css';
+import "./../styles/globals.css";
 
 interface Props {
     pageTitle: string;
 }
-const { pageTitle } = Astro.props
+const { pageTitle } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <link re,l="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>{ pageTitle }</title>
+        <title>{pageTitle}</title>
+        <ClientRouter />
     </head>
     <body>
         <Navbar />
-        <slot />
-    </body>
-
-    <script>
+        <main>
+            <slot />
+        </main>
+    </body><script>
         // Client Only
         const timeNowReal = document.getElementById(
             "time-now-real",
